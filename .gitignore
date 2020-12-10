@@ -2,3 +2,5 @@
 ItemSelector/bin/
 ItemSelector/obj/
 .vs/
+*.exe
+*.msi
