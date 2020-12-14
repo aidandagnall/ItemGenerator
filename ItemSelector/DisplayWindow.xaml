@@ -7,8 +7,9 @@
         Title="DisplayWindow" Height="450" Width="500"
         MinHeight="800" MinWidth="1200"
 
-        DataContext="{Binding RelativeSource={RelativeSource Self}}">
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Background="#2E3440">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="#2E3440">
         <StackPanel>
             <Viewbox MaxHeight="500" VerticalAlignment="Top">
                 <Label Content="{Binding CurrentObject}" Foreground="White" HorizontalContentAlignment="Center"/>
