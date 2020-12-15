@@ -35,7 +35,7 @@
                 </StackPanel>
                 <Button Content="Start" HorizontalAlignment="Center" Click="StartButton" Background="LightGray" Foreground="Black"
                         Height="40" Width="100"/>
-                <Label Content="v1.2" Foreground="Black"/>
+                <Label Content="v1.2.2" Foreground="Black"/>
             </StackPanel>
         </StackPanel>
         
