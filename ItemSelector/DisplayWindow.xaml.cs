@@ -78,7 +78,7 @@ namespace ItemSelector
 
         private void UpdateTimerDisplay()
         {
-            TimerDisplay.Content = _ts.Seconds != 0 ? _ts.Seconds.ToString() : _timer.ToString();
+            TimerDisplay.Content = "Next item in: " + (_ts.Seconds != 0 ? _ts.Seconds.ToString() : _timer.ToString()) + "s";
         }
 
         private void StartTotalTimer()
@@ -88,7 +88,7 @@ namespace ItemSelector
             {
                 if (ts == TimeSpan.Zero)
                     TotalDisplay.Visibility = Visibility.Hidden;
-                TotalDisplay.Content = ts.Minutes.ToString() + ':' + ts.Seconds.ToString("00");
+                TotalDisplay.Content = "Total time remaining: " + ts.Minutes.ToString() + ':' + ts.Seconds.ToString("00");
                 ts = ts.Add(TimeSpan.FromSeconds(-1));
             }, Application.Current.Dispatcher);
             t.Start();
