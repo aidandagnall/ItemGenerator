@@ -16,7 +16,8 @@
             </Viewbox>
         </StackPanel >
         <StackPanel>
-            <Label FontSize="32" Foreground="White" Name="TimerDisplay" HorizontalContentAlignment="Center" VerticalAlignment="Bottom"/>
+            <Label Content="" FontSize="32" Foreground="White" Name="TimerDisplay" HorizontalContentAlignment="Center" VerticalAlignment="Bottom"/>
+            <Label Content="" FontSize="32" Foreground="White" Name="TotalDisplay" HorizontalContentAlignment="Center" VerticalAlignment="Bottom"/>
             <Border Name="StartButton" BorderThickness="2" BorderBrush="Black" Margin="30,30,30,30">
                 <Button  Click="StartButtonHandler" Content="Start" HorizontalAlignment="Center"
                          MaxHeight="150" MaxWidth="350" MinHeight="150" MinWidth="350" />

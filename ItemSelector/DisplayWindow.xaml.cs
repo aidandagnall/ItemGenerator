@@ -16,8 +16,8 @@ namespace ItemSelector
         private string _currentObject;
         public event PropertyChangedEventHandler PropertyChanged;
         private readonly List<string> _items;
-        private int _prevIndex;
         private int _currIndex;
+        private int _repeats;
         private readonly int _timer;
         private readonly bool _trueRandom;
 
@@ -30,7 +30,8 @@ namespace ItemSelector
                 OnPropertyChanged("CurrentObject");
             }
         }
-        public DisplayWindow(List<string> inputs, bool rand, int seconds)
+
+        public DisplayWindow(List<string> inputs, bool rand, int seconds, int repeats)
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -38,6 +39,7 @@ namespace ItemSelector
             _items = inputs;
             _trueRandom = rand;
             _timer = seconds;
+            _repeats = repeats == 0 ? -1 : repeats;
             CurrentObject = "Ready?";
             Title = "Picker";
         }
@@ -65,6 +67,8 @@ namespace ItemSelector
 
         private void StartButtonHandler(object sender, RoutedEventArgs routedEventArgs)
         {
+            if (_repeats > 0)
+                StartTotalTimer();
             if (_timer > 0)
                 StartTimer(5);
             else
@@ -77,6 +81,22 @@ namespace ItemSelector
             TimerDisplay.Content = _ts.Seconds != 0 ? _ts.Seconds.ToString() : _timer.ToString();
         }
 
+        private void StartTotalTimer()
+        {
+            var ts = TimeSpan.FromSeconds(_timer * _repeats + 5);
+            var t = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
+            {
+                if (ts == TimeSpan.Zero)
+                    TotalDisplay.Visibility = Visibility.Hidden;
+                TotalDisplay.Content = ts.Minutes.ToString() + ':' + ts.Seconds.ToString("00");
+                ts = ts.Add(TimeSpan.FromSeconds(-1));
+            }, Application.Current.Dispatcher);
+            t.Start();
+        }
+
+        private DispatcherTimer _t;
+        private TimeSpan _ts;
+
         private void StartTimer(int duration)
         {
             _ts = TimeSpan.FromSeconds(duration);
@@ -86,17 +106,25 @@ namespace ItemSelector
                 if (_ts == TimeSpan.Zero)
                 {
                     _t.Stop();
-                    GetNextItem();
-                    StartTimer(_timer);
+                    
+                    if (_repeats == 0)
+                    {
+                        TimerDisplay.Content = "";
+                        CurrentObject = "Done 🎉";
+                        return;
+                    }
+                    else
+                    {
+                        GetNextItem();
+                        StartTimer(_timer);
+                        _repeats--;
+                    }
                 }
 
                 _ts = _ts.Add(TimeSpan.FromSeconds(-1));
             }, Application.Current.Dispatcher);
             _t.Start();
         }
-
-        private DispatcherTimer _t;
-        private TimeSpan _ts;
 
         private void GetNextItem()
         {
