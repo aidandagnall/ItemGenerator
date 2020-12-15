@@ -20,6 +20,8 @@
                 <StackPanel Margin="40,0,0,30">
                     <CheckBox Content="True Random" Foreground="Black" Background="White" Name="TrueRandom" Checked="RandomChecked"
                               Unchecked="RandomUnchecked"/>
+                    <CheckBox Content="Show Total Time" Foreground="Black" Background="White" Name="ShowTotalTime" Checked="TotalTimeChecked"
+                              Unchecked="TotalTimeUnchecked"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="30,0,0,10">
                     <Label Content="Update every " Foreground="Black"/>

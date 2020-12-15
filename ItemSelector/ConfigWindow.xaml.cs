@@ -38,7 +38,7 @@ namespace ItemSelector
             var repeats = 0;
             int.TryParse(Seconds.Text, out seconds);
             int.TryParse(Repeats.Text, out repeats);
-            var displayWindow = new DisplayWindow(inputs, _random, seconds, repeats);
+            var displayWindow = new DisplayWindow(inputs, _random, seconds, repeats, _showTotalTime);
             displayWindow.Closed += ChildWindowClosed;
             displayWindow.Show();
             Hide();
@@ -58,6 +58,17 @@ namespace ItemSelector
         private void RandomUnchecked(object sender, RoutedEventArgs e)
         {
             _random = false;
+        }
+
+        private bool _showTotalTime = false;
+        private void TotalTimeChecked(object sender, RoutedEventArgs e)
+        {
+            _showTotalTime = true;
+        }
+
+        private void TotalTimeUnchecked(object sender, RoutedEventArgs e)
+        {
+            _showTotalTime = false;
         }
     }
 }
