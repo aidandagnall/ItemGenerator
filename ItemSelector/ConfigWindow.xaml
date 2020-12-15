@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="MainWindow" 
-        Height="500" Width="400">
+        Height="528.974" Width="400" SizeToContent="Height">
     <StackPanel Background="White">
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,10,20,50" Background="White">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,10,20,20" Background="White">
             <StackPanel HorizontalAlignment="Center">
                 <Viewbox>
                     <Label Content="Item Selector" Foreground="Black"/>
@@ -21,14 +21,19 @@
                     <CheckBox Content="True Random" Foreground="Black" Background="White" Name="TrueRandom" Checked="RandomChecked"
                               Unchecked="RandomUnchecked"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="30,0,0,30">
+                <StackPanel Orientation="Horizontal" Margin="30,0,0,10">
                     <Label Content="Update every " Foreground="Black"/>
-                    <TextBox Name="Seconds" Text="0" PreviewTextInput="PreviewSecondsInput" Foreground="Black" Background="White" Width="35"/>
-                    <Label Content=" seconds. (0 for don't update)." Foreground="Black"/>
+                    <TextBox Name="Seconds" Text="0" PreviewTextInput="PreviewIntegerInput" Foreground="Black" Background="White" Width="35"/>
+                    <Label Content=" seconds (0 for don't update)." Foreground="Black"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="30,0,0,30">
+                    <Label Content="Repeat " Foreground="Black"/>
+                    <TextBox Name="Repeats" Text="0" PreviewTextInput="PreviewIntegerInput" Foreground="Black" Background="White" Width="35"/>
+                    <Label Content=" times (0 to continue until stopped)." Foreground="Black"/>
                 </StackPanel>
                 <Button Content="Start" HorizontalAlignment="Center" Click="StartButton" Background="LightGray" Foreground="Black"
                         Height="40" Width="100"/>
-                <Label Content="v1.1" Foreground="Black"/>
+                <Label Content="v1.2" Foreground="Black"/>
             </StackPanel>
         </StackPanel>
         

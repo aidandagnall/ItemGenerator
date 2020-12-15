@@ -19,7 +19,7 @@ namespace ItemSelector
         }
 
         
-        private void PreviewSecondsInput(object sender, TextCompositionEventArgs e)
+        private void PreviewIntegerInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !IsSecondsInputValid(e.Text);
         }
@@ -35,8 +35,10 @@ namespace ItemSelector
             var inputString = InputOptions.Text;
             var inputs = inputString.Split('\n').Select(s => s.Trim()).ToList();
             var seconds = 0;
+            var repeats = 0;
             int.TryParse(Seconds.Text, out seconds);
-            var displayWindow = new DisplayWindow(inputs, _random, seconds);
+            int.TryParse(Repeats.Text, out repeats);
+            var displayWindow = new DisplayWindow(inputs, _random, seconds, repeats);
             displayWindow.Closed += ChildWindowClosed;
             displayWindow.Show();
             Hide();
