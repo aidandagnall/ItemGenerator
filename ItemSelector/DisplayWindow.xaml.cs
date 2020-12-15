@@ -20,6 +20,7 @@ namespace ItemSelector
         private int _repeats;
         private readonly int _timer;
         private readonly bool _trueRandom;
+        private readonly bool _showTotal;
 
         public string CurrentObject
         {
@@ -31,13 +32,14 @@ namespace ItemSelector
             }
         }
 
-        public DisplayWindow(List<string> inputs, bool rand, int seconds, int repeats)
+        public DisplayWindow(List<string> inputs, bool rand, int seconds, int repeats, bool showTotal)
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             this.KeyDown += new KeyEventHandler(KeyPressHandler);
             _items = inputs;
             _trueRandom = rand;
+            _showTotal = showTotal;
             _timer = seconds;
             _repeats = repeats == 0 ? -1 : repeats;
             CurrentObject = "Ready?";
@@ -67,7 +69,7 @@ namespace ItemSelector
 
         private void StartButtonHandler(object sender, RoutedEventArgs routedEventArgs)
         {
-            if (_repeats > 0)
+            if (_repeats > 0 && _showTotal)
                 StartTotalTimer();
             if (_timer > 0)
                 StartTimer(5);
